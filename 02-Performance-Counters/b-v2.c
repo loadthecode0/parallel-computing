@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
     int index = 0;
     while(index != ARRAY_SIZE) {
       sum += data[index];
-      index++; // main difference
+      index++; 
     }
   }
 
