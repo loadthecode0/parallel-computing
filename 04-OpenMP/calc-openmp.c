@@ -21,9 +21,11 @@ int main(int argc, char **argv)
   to[INTERVALS - 1] = from[INTERVALS - 1];
   
   #pragma omp parallel for
-  
   for(long i = 1; i < INTERVALS; i++)
-   {from[i] = 0.0;}
+   {
+    from[i] = 0.0;
+    printf("Thread %d computes a[%d] = %d\n", omp_get_thread_num(), i, a[i]);
+   }
   
 
   printf("Number of intervals: %ld. Number of time steps: %d\n", INTERVALS, time_steps);
@@ -32,11 +34,11 @@ int main(int argc, char **argv)
   while(time_steps-- > 0)
   {
     #pragma omp parallel for
-    
     for(long i = 1; i < (INTERVALS - 1); i++)
-      {to[i] = from[i] + 0.1*(from[i - 1] - 2*from[i] + from[i + 1]);}
-    
-
+      {
+        to[i] = from[i] + 0.1*(from[i - 1] - 2*from[i] + from[i + 1]);
+        printf("Thread %d computes a[%d] = %d\n", omp_get_thread_num(), i, a[i]);
+      }
    {
     double* tmp = from;
     from = to;
