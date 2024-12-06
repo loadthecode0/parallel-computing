@@ -24,7 +24,7 @@ int main(int argc, char **argv)
   for(long i = 1; i < INTERVALS; i++)
    {
     from[i] = 0.0;
-    printf("Thread %d computes a[%d] = %d\n", omp_get_thread_num(), i, a[i]);
+    // printf("Thread %d computes a[%d] = %d\n", omp_get_thread_num(), i, a[i]);
    }
   
 
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     for(long i = 1; i < (INTERVALS - 1); i++)
       {
         to[i] = from[i] + 0.1*(from[i - 1] - 2*from[i] + from[i + 1]);
-        printf("Thread %d computes a[%d] = %d\n", omp_get_thread_num(), i, a[i]);
+        // printf("Thread %d computes a[%d] = %d\n", omp_get_thread_num(), i, a[i]);
       }
    {
     double* tmp = from;
